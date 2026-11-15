@@ -20,4 +20,8 @@ class KursController extends Controller
             return response()->json($data[$currency]);
         }
     }
+    public function indexAll(ParsingService $parsingService)
+    {
+        return response()->json($parsingService->parse());
+    }
 }
