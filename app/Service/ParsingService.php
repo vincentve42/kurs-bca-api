@@ -10,7 +10,7 @@ class ParsingService
 {
     public function parse(): array
     {
-        $html = file_get_contents('data.html');
+        $html = file_get_contents('https://www.bca.co.id/id/informasi/kurs');
 
         if ($html === false) {
             throw new \RuntimeException('Failed to read HTML file');
@@ -55,8 +55,7 @@ class ParsingService
                     : null;
             };
 
-            $data[] = [
-                'currency' => $code,
+            $data[$code] = [
                 'eRateBuy' => $getValue('eRate-buy'),
                 'eRateSell' => $getValue('eRate-sell'),
                 'ttCounterBuy' => $getValue('TTCounter-buy'),
@@ -65,7 +64,6 @@ class ParsingService
                 'bankNotesSell' => $getValue('BankNotes-sell'),
             ];
         }
-
         return $data;
     }
 }
